@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 
+ruby "~>3"
 # gem "rails"
 
 gem "sinatra", "~> 2.2"
