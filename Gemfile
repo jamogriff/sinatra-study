@@ -12,3 +12,10 @@ gem "pry", "~> 0.14.1"
 gem "rspec", "~> 3.11"
 
 gem "puma", "~> 5.6"
+
+
+gem "rake", "~> 13.0"
+
+gem "sequel", "~> 5.66"
+
+gem "sqlite3", "~> 1.6"

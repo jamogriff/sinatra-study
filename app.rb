@@ -1,13 +1,8 @@
 require 'sinatra'
+# Monkey patching
+# https://stackoverflow.com/a/3184039
 require 'json'
-
-get '/' do
-  'Hello world!'
-end
-
-get '/api' do
-  # Monkey patching
-  # https://stackoverflow.com/a/3184039
-  response = { 'payload': 'Hello world!' }
-  response.to_json
-end
+require 'pry' # only used for debugging
+require './database/connection.rb'
+require './api/v1/user_calories.rb'
+require './api/v1/fallbacks.rb'
