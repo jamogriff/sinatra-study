@@ -2,7 +2,6 @@ require './models/calorie_intake'
 require './models/user'
 
 get '/api/v1/user/:id/calories' do
-  binding.pry
   user = User[params['id']]
   return no_user_response unless !user.nil?
   return invalid_date_response unless date_valid?(params['date'])
@@ -23,7 +22,6 @@ post '/api/v1/user/:id/calories' do
 
   intake = CalorieIntake.new
   intake.calories = params['amount']
-  binding.pry
   intake.date = Date.strptime(params['date'], '%d-%m-%Y')
   intake.user = user
   if intake.valid?
