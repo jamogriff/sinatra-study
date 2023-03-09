@@ -1,5 +1,6 @@
 require './models/calorie_intake'
 require './models/user'
+require './helpers/validations'
 
 get '/api/v1/user/:id/calories' do
   user = User[params['id']]
@@ -31,14 +32,6 @@ post '/api/v1/user/:id/calories' do
   else
     intake.errors.to_json
   end
-end
-
-def date_valid?(date)
-  date =~ /\A\d{1,2}[-]\d{1,2}[-]\d{4}\z/
-end
-
-def number_valid?(number)
-  number =~ /\A\d+\z/
 end
 
 def invalid_date_response

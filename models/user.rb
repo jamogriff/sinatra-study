@@ -3,6 +3,7 @@ require 'sequel'
 class User < Sequel::Model
   plugin :validation_helpers
   one_to_many :calorie_intakes
+  one_to_many :weigh_ins
 
   def validate
     super

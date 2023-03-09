@@ -7,7 +7,7 @@ class CalorieIntake < Sequel::Model
   def validate
     super
     validates_presence [:calories, :date]
-    validates_numeric :calories
+    validates_integer :calories
   end
 
 end
