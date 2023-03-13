@@ -7,7 +7,7 @@ get '/api/v1/user/:id/calories' do
   return no_user_response unless !user.nil?
   return invalid_date_response unless date_valid?(params['date'])
 
-  date = Date.strptime(params['date'], '%d-%m-%Y')
+  date = get_formatted_date(params['date'])
   user_calories = DB[:calorie_intakes].select(:calories).where(user_id: user.id).where(date: date).all
   # TODO there's the sum enum for the following
   total_calories = 0
@@ -23,7 +23,7 @@ post '/api/v1/user/:id/calories' do
 
   intake = CalorieIntake.new
   intake.calories = params['amount']
-  intake.date = Date.strptime(params['date'], '%d-%m-%Y')
+  intake.date = get_formatted_date(params['date'])
   intake.user = user
   if intake.valid?
     intake.save
@@ -32,6 +32,10 @@ post '/api/v1/user/:id/calories' do
   else
     intake.errors.to_json
   end
+end
+
+def get_formatted_date(string)
+  Date.strptime(params['date'], '%m-%d-%Y')
 end
 
 def invalid_date_response
